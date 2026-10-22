@@ -35,11 +35,13 @@
     <script>
       const exerciseForm = document.getElementById("exercise-form");
 
-      exerciseForm.addEventListener("submit", () => {
+      exerciseForm.addEventListener("submit", (event) => {
         const userId = document.getElementById("uid").value;
+        if (!userId) {
+          event.preventDefault();
+          return;
+        }
         exerciseForm.action = `/api/users/${userId}/exercises`;
-
-        exerciseForm.submit();
       });
     </script>
   </body>
